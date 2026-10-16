@@ -1,7 +1,12 @@
 # ប្រើប្រាស់ Maven ជាមួយ OpenJDK សម្រាប់ Build Project
 FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
-COPY . .
+
+# Copy pom.xml និង source code ចូលមកដាច់ដោយឡែកពីគ្នាដើម្បីងាយស្រួលអាន
+COPY pom.xml .
+COPY src ./src
+
+# Build Project
 RUN mvn clean package -DskipTests
 
 # ប្រើប្រាស់ OpenJDK ស្រាលសម្រាប់ Run កម្មវិធី
